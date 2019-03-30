@@ -101,17 +101,17 @@ public class Utility {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray jsonArray = jsonObject.getJSONArray("HeWeather6");
             String weatherContent = jsonArray.getJSONObject(0).toString();
-            if (weatherContent.length() > 4000) {
-                for (int i = 0; i < weatherContent.length(); i += 4000) {
-                    if (i + 4000 < weatherContent.length()) {
-                        Log.i("第" + i + "数据", weatherContent.substring(i, i + 4000));
-                    } else {
-                        Log.i("第" + i + "数据", weatherContent.substring(i, weatherContent.length()));
-                    }
-                }
-            } else {
-                Log.i("全部数据", "************************  weather = " + weatherContent);
-            }
+//            if (weatherContent.length() > 4000) {
+//                for (int i = 0; i < weatherContent.length(); i += 4000) {
+//                    if (i + 4000 < weatherContent.length()) {
+//                        Log.i("第" + i + "数据", weatherContent.substring(i, i + 4000));
+//                    } else {
+//                        Log.i("第" + i + "数据", weatherContent.substring(i, weatherContent.length()));
+//                    }
+//                }
+//            } else {
+//                Log.i("全部数据", "************************  weather = " + weatherContent);
+//            }
             //Log.d(TAG,jsonArray.getJSONObject(0).toString());
             return new Gson().fromJson(weatherContent,Weather.class);
         } catch (JSONException e) {
