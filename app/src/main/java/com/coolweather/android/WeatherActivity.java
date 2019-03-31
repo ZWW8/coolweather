@@ -107,12 +107,12 @@ public class WeatherActivity extends AppCompatActivity {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         final String weatherString = prefs.getString("weather",null);
-        Log.d("weatherString",weatherString);
+//        Log.d("weatherString",weatherString);
         if(weatherString != null){
             //有缓存时直接解析天气数据
             Weather weather = Utility.handleWeatherResponse(weatherString);
             mWeatherId = weather.basic.weatherId;
-            Log.d("mWeatherId",weatherString);
+//            Log.d("mWeatherId",weatherString);
             showWeatherInfo(weather);
         }else{
             //无法缓存时去服务器查天气
@@ -167,9 +167,10 @@ public class WeatherActivity extends AppCompatActivity {
     private static void transparentStatusBar(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
             //需要设置这个flag contentView才能延伸到状态栏
-            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
             //状态栏覆盖在contentView上面，设置透明使contentView的背景透出来
             activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
         } else {
